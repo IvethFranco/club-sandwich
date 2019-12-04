@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtils {
+    public static final String KEY_NAME = "name";
+    public static final String KEY_MAIN_NAME = "mainName";
+    public static final String KEY_PLACE_OF_ORIGIN = "placeOfOrigin";
+    public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_IMAGE = "image";
+    public static final String KEY_ALSO_KNOWS_AS = "alsoKnownAs";
+    public static final String KEY_INGREDIENTS = "ingredients";
 
     public static Sandwich parseSandwichJson(String json) {
         try{
@@ -18,14 +25,14 @@ public class JsonUtils {
             List<String> ingredients_lst = new ArrayList<String>();
 
             Sandwich sandwich = new Sandwich();
-            json_names = new JSONObject(json_obj.getString("name"));
-            sandwich.setMainName(json_names.getString("mainName"));
-            sandwich.setPlaceOfOrigin(json_obj.getString("placeOfOrigin"));
-            sandwich.setDescription(json_obj.getString("description"));
-            sandwich.setImage(json_obj.getString("image"));
+            json_names = new JSONObject(json_obj.getString(KEY_NAME));
+            sandwich.setMainName(json_names.getString(KEY_MAIN_NAME));
+            sandwich.setPlaceOfOrigin(json_obj.getString(KEY_PLACE_OF_ORIGIN));
+            sandwich.setDescription(json_obj.getString(KEY_DESCRIPTION));
+            sandwich.setImage(json_obj.getString(KEY_IMAGE));
 
-            String[] alsoKnownAs_arr = json_names.getString("alsoKnownAs").replace("[","").replace("]","").split(",");
-            String[] ingredients_arr = json_obj.getString("ingredients").replace("[","").replace("]","").split(",");
+            String[] alsoKnownAs_arr = json_names.getString(KEY_ALSO_KNOWS_AS).replace("[","").replace("]","").split(",");
+            String[] ingredients_arr = json_obj.getString(KEY_INGREDIENTS).replace("[","").replace("]","").split(",");
 
             for (String item : alsoKnownAs_arr){
                 alsoKnownAs_lst.add(item);
